@@ -9,11 +9,14 @@
     body {
       width: 100vw;
       height: 100vh;
-      background-image: url('1.png'); /* 替换为你的图片路径 */
-      background-size: cover;       /* 图片覆盖整个屏幕，按比例缩放 */
-      background-position: center;  /* 居中显示 */
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+      background-image: url('1.png');
+      background-size: contain;    /* 改为 contain 确保完整显示背景图 */
+      background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed; /* 可选：滚动时背景固定 */
+      background-attachment: fixed;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -27,6 +30,18 @@
       overflow: hidden;
       background-color: #fff;
     } */
+
+    /* 添加媒体查询，适配移动设备 */
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 10px;
+        background-size: 90% auto; /* 在手机上将背景图缩小到屏幕宽度的90% */
+      }
+
+      .emoji {
+        font-size: 20px; /* 稍微减小emoji的默认大小 */
+      }
+    }
 
     .emoji {
       position: absolute;
