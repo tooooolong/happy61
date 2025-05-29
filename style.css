@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.ribbon {
+  position: absolute;
+  top: -50px;
+  width: 10px;
+  height: 60px;
+  background-color: red;
+  animation: fallRibbon 5s linear infinite;
+}
+
+@keyframes fallRibbon {
+  0% {
+    transform: translateY(0) rotate(-45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.balloon {
+  position: absolute;
+  bottom: -50px;
+  width: 30px;
+  height: 40px;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  background: linear-gradient(to top, #ff6ec4, #7873f5);
+  animation: riseBalloon 8s ease-in-out infinite;
+}
+
+@keyframes riseBalloon {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(20px);
+    opacity: 0;
+  }
+}

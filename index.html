@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>Emoji 庆典特效</title>
+  <style>
+
+    /* 设置 body 全屏，并设置背景图 */
+    body {
+      width: 100vw;
+      height: 100vh;
+      background-image: url('1.png'); /* 替换为你的图片路径 */
+      background-size: cover;       /* 图片覆盖整个屏幕，按比例缩放 */
+      background-position: center;  /* 居中显示 */
+      background-repeat: no-repeat;
+      background-attachment: fixed; /* 可选：滚动时背景固定 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    /* body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #fff;
+    } */
+
+    .emoji {
+      position: absolute;
+      font-size: 24px;
+      user-select: none;
+      pointer-events: none;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="celebration"></div>
+
+<script>
+  const emojis = ['🎉', '🎊', '🎈', '✨', '🎂', '🥳', '🎁', '🎆'];
+
+  function createEmoji() {
+    const emoji = document.createElement('span');
+    emoji.classList.add('emoji');
+    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+    // 设置随机位置和动画时长
+    emoji.style.left = Math.random() * window.innerWidth + 'px';
+    emoji.style.top = -Math.random() * 50 + 'px';
+    emoji.style.fontSize = (Math.random() * 20 + 16) + 'px'; // 16~36px
+    emoji.style.animationDuration = (Math.random() * 3 + 4) + 's'; // 4~7秒
+
+    document.getElementById('celebration').appendChild(emoji);
+
+    // 动画结束后移除元素，防止 DOM 膨胀
+    setTimeout(() => {
+      emoji.remove();
+    }, 7000);
+  }
+
+  // 每隔一段时间创建一个新的 Emoji
+  setInterval(createEmoji, 200);
+
+  // 页面加载后自动开始
+  window.onload = () => {
+    for (let i = 0; i < 20; i++) {
+      setTimeout(createEmoji, i * 100); // 初始批量生成
+    }
+  };
+</script>
+
+</body>
+</html>
